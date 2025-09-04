@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { FiLogOut, FiPlus, FiUsers,FiMoreVertical } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 
-
+import api from "../api";
 
 const Sidebar = ({setSelectedGroup,socket}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -108,7 +108,7 @@ const Sidebar = ({setSelectedGroup,socket}) => {
       const token=userInfo.token;
       // console.log(token);
 
-     const {data}= await axios.get('http://localhost:5000/api/groups',{
+     const {data}= await api.get('/api/groups',{
         headers:{
           Authorization:`Bearer ${token}`
         }
@@ -142,8 +142,8 @@ const Sidebar = ({setSelectedGroup,socket}) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
     const token = userInfo.token;
 
-    const { data } = await axios.post(
-      "http://localhost:5000/api/groups",
+    const { data } = await api.post(
+      "/api/groups",
       {
         name: newGroupName,
         description: newGroupDescription,
@@ -194,7 +194,7 @@ const Sidebar = ({setSelectedGroup,socket}) => {
           const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
           const token = userInfo.token;
 
-          await axios.delete(`http://localhost:5000/api/groups/${groupId}`, {
+          await api.delete(`/api/groups/${groupId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -239,7 +239,7 @@ const Sidebar = ({setSelectedGroup,socket}) => {
        const userInfo=JSON.parse(localStorage.getItem('userInfo') || "{}");
        const token=userInfo.token;
 
-       await axios.post(`http://localhost:5000/api/groups/${groupId}/join`,
+       await api.post(`/api/groups/${groupId}/join`,
         {
         
        },{
@@ -284,8 +284,8 @@ const Sidebar = ({setSelectedGroup,socket}) => {
        const userInfo=JSON.parse(localStorage.getItem('userInfo') || "{}");
        const token=userInfo.token;
 
-       await axios.post(
-        `http://localhost:5000/api/groups/${groupId}/leave`,
+       await api.post(
+        `/api/groups/${groupId}/leave`,
         {
         
        },{

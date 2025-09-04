@@ -13,6 +13,8 @@ import { FiLogIn } from "react-icons/fi";
 import {useState} from "react";
 import axios from "axios";
 
+import api from "../api";
+
 const Login = () => {
 
   const[email,setEmail]=useState("");
@@ -25,8 +27,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try{
-       const {data}= await axios.post(
-        'http://localhost:5000/api/users/login',
+       const {data}= await api.post(
+        '/api/users/login',
         {
           email,
           password

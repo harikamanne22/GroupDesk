@@ -3,7 +3,9 @@ import Sidebar from "../components/Sidebar";
 import ChatArea from "../components/ChatArea";
 import { useEffect, useState } from "react";  
 import io from "socket.io-client";
-const ENDPOINT="http://localhost:5000"
+
+const ENDPOINT = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 
 
 const Chat = () => {

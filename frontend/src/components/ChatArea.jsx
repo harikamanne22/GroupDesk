@@ -16,6 +16,7 @@ import { FiSend, FiInfo, FiMessageCircle } from "react-icons/fi";
 import UsersList from "./UsersList";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import api from "../api";
 
 const ChatArea = ({selectedGroup,socket}) => {
 
@@ -132,7 +133,7 @@ const ChatArea = ({selectedGroup,socket}) => {
         const currentUser= JSON.parse(localStorage.getItem("userInfo")||"{}");
         const token= currentUser?.token;
         try{ 
-            const {data}= await axios.get(`http://localhost:5000/api/messages/${selectedGroup?._id}`,
+            const {data}= await api.get(`api/messages/${selectedGroup?._id}`,
               {
                 headers:{Authorization:`Bearer ${token}`}
               }
@@ -157,8 +158,8 @@ const ChatArea = ({selectedGroup,socket}) => {
       const token = currentUser?.token;
 
       try {
-        const { data } = await axios.post(
-          "http://localhost:5000/api/messages",
+        const { data } = await api.post(
+          "/api/messages",
           {
             content: newMessage,
             groupId: selectedGroup?._id,
