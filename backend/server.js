@@ -17,7 +17,7 @@ const app=express();
 const server= http.createServer(app);
 const io=new Server(server,{
     cors:{
-        origin:["https://groupdesk.netlify.app/"],
+        origin:["https://groupdesk.netlify.app"],
         methods:["GET","POST"],
         credentials:true
     }
